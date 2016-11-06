@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="G:\Tools\XDP\XDP\XDPCoreTests\XDPCoreTests.nunit" total="60" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-05-30" time="16:06:51">
+  <environment nunit-version="2.5.3.9345" clr-version="2.0.50727.4927" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.5.3\bin\net-2.0" machine-name="IGNORE" user="Dave" user-domain="Ignore" />
+  <culture-info current-culture="en-GB" current-uiculture="en-US" />
+  <test-suite name="G:\Tools\XDP\XDP\XDPCoreTests\XDPCoreTests.nunit" executed="True" success="True" time="20.126" asserts="0">
+    <results>
+      <test-suite name="G:\Tools\XDP\XDP\XDPCoreTests\bin\Debug\XDPCoreTests.dll" executed="True" success="True" time="20.118" asserts="0">
+        <results>
+          <test-suite name="XDPCoreTests" executed="True" success="True" time="20.117" asserts="0">
+            <results>
+              <test-suite name="DataFormat" executed="True" success="True" time="13.856" asserts="0">
+                <results>
+                  <test-suite name="XDPDataTests" executed="True" success="True" time="13.855" asserts="0">
+                    <results>
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Decrypt_ValidMachineEncrypt_RecoverMessage" executed="True" success="True" time="0.020" asserts="1" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_BadMagicBytes_XDPInvalidFormatExcepton" executed="True" success="True" time="0.000" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_BlankHostname_XDPBadParameterException" executed="True" success="True" time="0.007" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_BlankIdentity_XDPBadParameterException" executed="True" success="True" time="13.519" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_BlankValue_XDPBadParameterException" executed="True" success="True" time="0.051" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_BlankXDPEncryptedKeys_XDPBadParameterException" executed="True" success="True" time="0.005" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_BlankXDPEncryptionAlgorithm_XDPBadParameterException" executed="True" success="True" time="0.017" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_BlankXDPEncryptionIV_XDPBadParameterException" executed="True" success="True" time="0.007" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_BlankXDPEncryptionMode_XDPBadParameterException" executed="True" success="True" time="0.007" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_BlankXDPSignatureAlgorithm_XDPBadParameterException" executed="True" success="True" time="0.008" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_EmptyDataOut_XDPZeroLengthArrayException" executed="True" success="True" time="0.000" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_HeaderLengthInt32MaxValue_XDPInvalidFormatExcepton" executed="True" success="True" time="0.000" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_HeaderLengthInt32MinValue_XDPInvalidFormatExcepton" executed="True" success="True" time="0.000" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_HeaderLengthToBig_XDPInvalidFormatExcepton" executed="True" success="True" time="0.001" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_HeaderLengthToSmall_XDPZeroLengthArrayException" executed="True" success="True" time="0.001" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_NullDataOut_XDPInvalidIdentityException" executed="True" success="True" time="0.000" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedHostname_XDPBadParameterException" executed="True" success="True" time="0.004" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedIdentity_XDPBadParameterException" executed="True" success="True" time="0.004" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedValue_XDPBadParameterException" executed="True" success="True" time="0.003" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedXDPAuthorizedIdentities_XDPBadParameterException" executed="True" success="True" time="0.014" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedXDPDataSignature_XDPBadParameterException" executed="True" success="True" time="0.056" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedXDPEncryptedKeys_XDPBadParameterException" executed="True" success="True" time="0.012" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedXDPEncryptionIV_XDPBadParameterException" executed="True" success="True" time="0.012" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedXDPEncryptionMode_XDPBadParameterException" executed="True" success="True" time="0.009" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedXDPInternalCommonHeader_XDPInvalidFormatExcepton" executed="True" success="True" time="0.004" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedXDPInternalHeaderMachineSignature_XDPBadParameterException" executed="True" success="True" time="0.007" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedXDPInternalHeaderSignatures_XDPInvalidFormatExcepton" executed="True" success="True" time="0.005" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedXDPInternalHeaderV1_XDPInvalidFormatExcepton" executed="True" success="True" time="0.005" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedXDPInternalMachineHeader_XDPInvalidFormatExcepton" executed="True" success="True" time="0.003" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_RemovedXDPSignatureAlgorithm_XDPBadParameterException" executed="True" success="True" time="0.004" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Deserialize_ShortDataOut_XDPInvalidFormatExcepton" executed="True" success="True" time="0.001" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Encrypt_EmptyAuthdUsers_XDPZeroLengthArrayException" executed="True" success="True" time="0.001" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Encrypt_EmptyDataIn_XDPZeroLengthArrayException" executed="True" success="True" time="0.002" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Encrypt_NullAuthdUsers_XDPInvalidIdentityException" executed="True" success="True" time="0.000" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Encrypt_NullDataIn_XDPInvalidIdentityException" executed="True" success="True" time="0.001" asserts="0" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Encrypt_ValidMockMachineEncrypt_NoException" executed="True" success="True" time="0.012" asserts="1" />
+                      <test-case name="XDPCoreTests.DataFormat.XDPDataTests.Serialize_CalledBeforeEncrypt_XDPBadStateException" executed="True" success="True" time="0.001" asserts="0" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite name="Identity" executed="True" success="True" time="6.238" asserts="0">
+                <results>
+                  <test-suite name="IdentityCacheTests" executed="True" success="True" time="6.035" asserts="0">
+                    <results>
+                      <test-case name="XDPCoreTests.Identity.IdentityCacheTests.Add_AddEntry_CacheCountIs1" executed="True" success="True" time="0.002" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.IdentityCacheTests.Add_AddNullIdentityInfo_CacheEmpty" executed="True" success="True" time="0.000" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.IdentityCacheTests.Add_AddNullKey_CacheEmpty" executed="True" success="True" time="0.001" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.IdentityCacheTests.Find_CanFindEntryAdded_EntryCached" executed="True" success="True" time="0.010" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.IdentityCacheTests.Find_EntryExpires_CacheEmpty" executed="True" success="True" time="3.001" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.IdentityCacheTests.FindBySid_CanFindEntryAdded_EntryCached" executed="True" success="True" time="0.006" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.IdentityCacheTests.FindBySid_EntryExpires_CacheEmpty" executed="True" success="True" time="3.002" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite name="MachineIdentityHelperTests" executed="True" success="True" time="0.193" asserts="0">
+                    <results>
+                      <test-case name="XDPCoreTests.Identity.MachineIdentityHelperTests.LocalIdentitiesDictionary_AdministratorsIdentityResolves_LocalIDDictionaryCountIs1" executed="True" success="True" time="0.121" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.MachineIdentityHelperTests.LocalIdentitiesDictionary_LocalServiceIdentityResolves_LocalIDDictionaryCountIs1" executed="True" success="True" time="0.017" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.MachineIdentityHelperTests.LocalIdentitiesDictionary_LocalSystemIdentityResolves_LocalIDDictionaryCountIs1" executed="True" success="True" time="0.009" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.MachineIdentityHelperTests.LocalIdentitiesDictionary_NetworkServiceIdentityResolves_LocalIDDictionaryCountIs1" executed="True" success="True" time="0.003" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.MachineIdentityHelperTests.LocalIdentitiesDictionary_NonExistantIdentity_ThrowsException" executed="True" success="True" time="0.005" asserts="0" />
+                      <test-case name="XDPCoreTests.Identity.MachineIdentityHelperTests.LocalIdentitiesDictionary_SidsResolve_LocalIDDictionaryCountIsArrayLength" executed="True" success="True" time="0.007" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.MachineIdentityHelperTests.LocalIdentitiesDictionary_UserIdentity_LocalIDDictionaryCountIs1" executed="True" success="True" time="0.002" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.MachineIdentityHelperTests.LocalIdentitiesDictionary_UserIdentityLookup_CheckTiming" executed="True" success="True" time="0.002" asserts="1" />
+                      <test-case name="XDPCoreTests.Identity.MachineIdentityHelperTests.LocalIdentitiesDictionary_UsersIdentityResolves_LocalIDDictionaryCountIs1" executed="True" success="True" time="0.005" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite name="Messages" executed="True" success="False" time="0.001" asserts="0">
+                <results>
+                  <test-suite name="MessageSenderTests" executed="True" success="False" time="0.000" asserts="0" />
+                </results>
+              </test-suite>
+              <test-suite name="XDPCommonTests" executed="True" success="True" time="0.009" asserts="0">
+                <results>
+                  <test-case name="XDPCoreTests.XDPCommonTests.DomainsEqual_DifferentDomainsSameLength_ReturnsFalse" executed="True" success="True" time="0.002" asserts="1" />
+                  <test-case name="XDPCoreTests.XDPCommonTests.DomainsEqual_EqualFQDNandNonFQDN_ReturnsTrue" executed="True" success="True" time="0.001" asserts="1" />
+                  <test-case name="XDPCoreTests.XDPCommonTests.DomainsEqual_FirstDomainNull_ReturnsFalse" executed="True" success="True" time="0.000" asserts="1" />
+                  <test-case name="XDPCoreTests.XDPCommonTests.DomainsEqual_IdenticalDomains_ReturnsTrue" executed="True" success="True" time="0.000" asserts="1" />
+                  <test-case name="XDPCoreTests.XDPCommonTests.DomainsEqual_NonEqualFQDNandNonFQDN_ReturnsFalse" executed="True" success="True" time="0.001" asserts="1" />
+                  <test-case name="XDPCoreTests.XDPCommonTests.DomainsEqual_NonEqualFQDNandNonFQDN2Dots_ReturnsFalse" executed="True" success="True" time="0.001" asserts="1" />
+                  <test-case name="XDPCoreTests.XDPCommonTests.DomainsEqual_SecondDomainNull_ReturnsFalse" executed="True" success="True" time="0.000" asserts="1" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

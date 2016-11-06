@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:XDP.XDPMachineService.Messages"
+    elementFormDefault="qualified"
+    xmlns="urn:XDP.XDPMachineService.Messages"
+    xmlns:msm="urn:XDP.XDPMachineService.Messages"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="XDPExceptionResponse">
+    <xs:annotation>
+      <xs:documentation>This message is sent if an error occurs</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="XDPUnknownIdentity" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>This exception is returned in response to a XDPRequestDomainHeader with an XDPAuthorizedIdentity that the Domain does recognise</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XDPBadSignature" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>This exception is returned in response to a XDPRequestDecryptionKey with a signature that does not validate</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XDPNotAuthorized" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>This exception is returned in response to a XDPRequestDecryptionKey where the identified caller is not authorized to decrypt</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XDPBadParameter">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Parameter" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation>The name of the parameter that caused the error</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Reason" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation>The reason the parameter caused the error</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="XDPGeneralException" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>A string describing the exception that occurred</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="XDPRequestProtectData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="XDPAuthorizedIdentities">
+          <xs:annotation>
+            <xs:documentation>The identities (users or groups) authorized to dercypt the data</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Identity" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation>The Security Identifier (SID) of the identity </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="UserData" type="xs:hexBinary">
+          <xs:annotation>
+            <xs:documentation>
+              The data the user wants to protect.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="XDPResponseProtectData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ProtectedData" type="xs:hexBinary">
+          <xs:annotation>
+            <xs:documentation>
+              The protected user's data.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="XDPRequestUnprotectData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="encryptedData" type="xs:hexBinary">
+          <xs:annotation>
+            <xs:documentation>
+              The protected data.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="XDPResponseUnprotectData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="UnprotectedData" type="xs:hexBinary">
+          <xs:annotation>
+            <xs:documentation>
+              The unprotected user's data.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

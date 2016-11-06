@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:com.XDP.XDPData"
+    elementFormDefault="qualified"
+    xmlns="urn:com.XDP.XDPData"
+    xmlns:xdp="urn:com.XDP.XDPData"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="XDPInternalCommonHeader">
+    <xs:annotation>
+      <xs:documentation>The common header contains all cryptographic algorithm information and the signature of the data.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="XDPEncryptionAlgorithm" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>The symmetric encryption algorithm used to encrypt data</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XDPEncryptionMode" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>The mode of the symmetric encryption algorithm</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XDPEncryptionIV" type="xs:hexBinary">
+          <xs:annotation>
+            <xs:documentation>The initialization vector of the symmetric encryption algorithm</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XDPSignatureAlgorithm" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>The symmetric signature algorithm used to sign data</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XDPDataSignature" type="xs:hexBinary">
+          <xs:annotation>
+            <xs:documentation>The symmetric signature calculated from the unencrypted data using the XDPSignatureKey</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="XDPAuthorizedIdentities">
+    <xs:annotation>
+      <xs:documentation>The identities (users or groups) authorized to dercypt the data</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Identity" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>The Security Identifier (SID) of the account </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="XDPEncryptedKeys" type="xs:hexBinary">
+    <xs:annotation>
+      <xs:documentation>A DPAPI encrypted XDPKeys element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="XDPInternalMachineHeader">
+    <xs:annotation>
+      <xs:documentation>Stores the authorized machine identities that can decrypt the data and DPAPI encrypted data containing the encryption and signature keys</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Hostname" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>The hostname of the machine</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="xdp:XDPAuthorizedIdentities">
+          <xs:annotation>
+            <xs:documentation>All identities are relative to the machine with host name equal to the Hostname element</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="xdp:XDPEncryptedKeys">
+          <xs:annotation>
+            <xs:documentation>All DPAPI encrypted data is relative to the machine with host name equal to the Hostname element</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="XDPInternalDomainHeader">
+    <xs:annotation>
+      <xs:documentation>Stores the authorized Domain identities that can decrypt the data and DPAPI encrypted data containing the encryption and signature keys</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="XDPDomainServer" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>The hostname of the machine running the XDP Domain Service</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="xdp:XDPAuthorizedIdentities">
+          <xs:annotation>
+            <xs:documentation>All identities are relative to the domain of the machine identified in the XDPDomainServer element</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="xdp:XDPEncryptedKeys">
+          <xs:annotation>
+            <xs:documentation>All DPAPI encrypted data is relative to the account running the XDP Domain Service on the machine identified in the XDPDomainServer element</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="XDPInternalHeaderMachineSignature">
+    <xs:annotation>
+      <xs:documentation>A symmetric signature of the XDPInternalCommonHeader and a XDPInternalMachineHeader element using the XDPSignatureKey</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Hostname" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>The hostname of the machine that created this signature</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Value" type="xs:hexBinary">
+          <xs:annotation>
+            <xs:documentation>The signature value</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="XDPInternalHeaderDomainSignature" type="xs:hexBinary">
+    <xs:annotation>
+      <xs:documentation>A symmetric signature of the XDPInternalCommonHeader and XDPInternalDomainHeader elements using the XDPSignatureKey</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="XDPHeader">
+    <xs:annotation>
+      <xs:documentation>
+        The header stored with XDP protected data that contains the authorized identities able recover the cryptographic keys used to decrypt and verify the integrity of the 
+        protected data
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="XDPVersion" type="xs:unsignedShort">
+          <xs:annotation>
+            <xs:documentation>The 2-byte version number of the XDPInternalHeader</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XDPInternalHeader">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="xdp:XDPInternalCommonHeader" />
+              <xs:element ref="xdp:XDPInternalMachineHeader" minOccurs="0" maxOccurs="unbounded" />
+              <xs:element ref="xdp:XDPInternalDomainHeader" minOccurs="0" />
+              <xs:element name="XDPInternalHeaderSignatures">
+                <xs:annotation>
+                  <xs:documentation>The symmetric signatures of the XDPInternalMachineHeader elements and the XDPInternalDomainHeader element</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element ref="xdp:XDPInternalHeaderMachineSignature" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="xdp:XDPInternalHeaderDomainSignature" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

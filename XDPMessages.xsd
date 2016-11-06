@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:com.XDP.XDPMessages"
+    elementFormDefault="qualified"
+    xmlns="urn:com.XDP.XDPMessages"
+    xmlns:msg="urn:com.XDP.XDPMessages"
+    xmlns:xdp="urn:com.XDP.XDPData"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:import namespace="urn:com.XDP.XDPData" schemaLocation="XDP.xsd" />
+
+  <xs:element name="XDPKeys">
+    <xs:annotation>
+      <xs:documentation>This element holds the unencrypted versions of the symmetric encryption and symmetric signature keys</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="XDPEncryptionKey" type="xs:hexBinary" />
+        <xs:element name="XDPSignatureKey" type="xs:hexBinary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="XDPRequestDomainHeader">
+    <xs:annotation>
+      <xs:documentation>This message is sent by XDP Service to request an XDPInternalDomainHeader and XDPInternalDomainHeaderSignature from the XDP Domain Service</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="xdp:XDPInternalCommonHeader" />
+        <xs:element ref="xdp:XDPAuthorizedIdentities" />
+        <xs:element ref="msg:XDPKeys" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="XDPResponseDomainHeader">
+    <xs:annotation>
+      <xs:documentation>This message is sent by the XDP Domain Service in response to the XDPRequestDomainHeader message</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="xdp:XDPInternalDomainHeader" />
+        <xs:element ref="xdp:XDPInternalHeaderDomainSignature" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="XDPRequestDecryptionKey">
+    <xs:annotation>
+      <xs:documentation>This message is sent by XDP Service to request the XDPKeys from the XDP Domain Service</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="xdp:XDPInternalCommonHeader" />
+        <xs:element ref="xdp:XDPInternalDomainHeader" />
+        <xs:element ref="xdp:XDPInternalHeaderDomainSignature" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="XDPResponseDecryptionKey">
+    <xs:complexType>
+      <xs:annotation>
+        <xs:documentation>This message is sent by the XDP Domain Service in response to the XDPRequestDecryptionKey message</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element ref="msg:XDPKeys" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="XDPException">
+    <xs:annotation>
+      <xs:documentation>This message is sent if an error occurs</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="XDPUpdateCommonHeader">
+          <xs:annotation>
+            <xs:documentation>This is sent only by the XDP Domain Service if it wants to update the cryptographic algorithms used by an XDP Service</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="xdp:XDPInternalCommonHeader">
+                <xs:annotation>
+                  <xs:documentation>The whole element is used but only the XDPEncryptionAlgorithm, XDPEncryptionMode and XDPSignatureAlgorithm are read</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="XDPUnknownIdentity" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>This exception is returned in response to a XDPRequestDomainHeader with an XDPAuthorizedIdentity that the Domain does recognise</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XDPBadSignature" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>This exception is returned in response to a XDPRequestDecryptionKey with a signature that does not validate</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XDPNotAuthorized" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>This exception is returned in response to a XDPRequestDecryptionKey where the identified caller is not authorized to decrypt</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XDPBadParameter">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Parameter" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation>The name of the parameter that caused the error</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Reason" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation>The reason the parameter caused the error</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="XDPGeneralException" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>A string describing the exception that occurred</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

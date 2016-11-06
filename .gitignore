@@ -1,0 +1,6 @@
+**/.svn
+**/bin
+**/obj
+log4net-1.2.10/
+/XDPInstall/*
+!/XDPInstall/XDPInstallerHelper
